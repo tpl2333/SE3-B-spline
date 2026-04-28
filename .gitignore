@@ -1,0 +1,22 @@
+build/
+
+# --- Python 相关 ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+
+# --- IDE & 编辑器相关 ---
+.vscode/
+.vs/
+*.swp
+*.bak
+*.user
+
+# --- 操作系统临时文件 ---
+Thumbs.db
+.DS_Store
