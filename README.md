@@ -15,39 +15,45 @@
 * Python 依赖：NumPy、SciPy、Open3D
 ## 编译与运行
 
-1. **编译 C++ 核心模块**: 将 `fit_core.cpp` 编译为 Python 可调用的动态库。通常使用 CMakeLists.txt 或手动编译 需要将 `fit_core.cpp` 编译为 Python 可调用的动态库。
+1. **编译 C++ 核心模块**
 
-```bash
-# 创建并进入构建目录
-mkdir -p build/Release
-cd build/Release
+    将 `fit_core.cpp` 编译为 Python 可调用的动态库。通常使用 CMakeLists.txt 或手动编译 需要将 `fit_core.cpp` 编译为 Python 可调用的动态库。
 
-# 执行编译
-cmake ../..
-make
-```
-注意：请确保 `fitting_curve.py` 中的 `from build.Release import fit_curve` 路径能正确引用生成的库文件。
+    ```bash
+    # 创建并进入构建目录
+    mkdir -p build/Release
+    cd build/Release
 
-2. **运行拟合程序**: 编译成功后，运行主程序进行轨迹优化。
+    # 执行编译
+    cmake ../..
+    make
+    ```
+    注意：请确保 `fitting_curve.py` 中的 `from build.Release import fit_curve` 路径能正确引用生成的库文件。
 
-```Bash
-python fitting_curve.py
-```
-输入：读取 `opencv_cameras.json`（原始相机姿态）
+2. **运行拟合程序**
 
-输出：生成 `fitted_spline_params.json`（优化后的控制点参数）
+    编译成功后，运行主程序进行轨迹优化。
 
-3. **结果可视化**: 使用 Open3D 引擎对比原始数据与拟合后的平滑曲线。
+    ```Bash
+    python fitting_curve.py
+    ```
+    输入：读取 `opencv_cameras.json`（原始相机姿态）
 
-```Bash
-python visualize.py
-```
+    输出：生成 `fitted_spline_params.json`（优化后的控制点参数）
 
-交互快捷键：
-在可视化窗口激活状态下，按下以下键位可以切换显示内容：
+3. **结果可视化**
 
-A：显示/隐藏 原始观测轨迹 (Actual Path) —— 蓝色
+    使用 Open3D 引擎对比原始数据与拟合后的平滑曲线。
 
-S：显示/隐藏 样条拟合曲线 (Spline Curve) —— 绿色
+    ```Bash
+    python visualize.py
+    ```
 
-K：显示/隐藏 控制点与骨架 (Knots/Frames) —— 橙色
+    交互快捷键：
+    在可视化窗口激活状态下，按下以下键位可以切换显示内容：
+
+    A：显示/隐藏 原始观测轨迹 (Actual Path) —— 蓝色
+
+    S：显示/隐藏 样条拟合曲线 (Spline Curve) —— 绿色
+
+    K：显示/隐藏 控制点与骨架 (Knots/Frames) —— 橙色
